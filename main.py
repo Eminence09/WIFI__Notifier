@@ -27,9 +27,9 @@
 # print(platform.python_build())
 
 
-import time
 from plyer import notification
 import subprocess
+import time
 
 SSIDS = set()
 
@@ -37,13 +37,12 @@ SSIDS = set()
 while True: 
     time.sleep(10)
     
-    
     output = subprocess.check_output(['netsh', 'wlan', 'show', 'networks']).decode('utf-8')
     for line in output.split("\n"):
         
         if "SSID" in line:
             ssid = line.split(":")[1].strip()
-            SSIDS.add(ssid)
+            SSIDS.update([ssid])
             
     
     if 'realme narzo 50A Prime' in SSIDS:
